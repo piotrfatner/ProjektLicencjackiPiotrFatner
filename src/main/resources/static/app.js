@@ -31,6 +31,18 @@ app.config(function($routeProvider) {
                 factory:checkRouting
             }
         })
+        .when('/userContact', {
+            templateUrl : 'views/userContact.html',
+            resolve:{
+                factory:checkRouting
+            }
+        })
+        .when('/userTreatments', {
+            templateUrl : 'views/userTreatments.html',
+            resolve:{
+                factory:checkRouting
+            }
+        })
 
         // route for the contact page
         .when('/contact', {
