@@ -18,11 +18,6 @@ app.controller('loginController', function($scope,$http, $window,$location) {
             }, function (error) { console.log(error) }
         );
     };
-    $scope.logout = function() {
-        $http.post("/logout").then(function() {
-
-        });
-    };
 
 
     $scope.sha1 =function(msg)

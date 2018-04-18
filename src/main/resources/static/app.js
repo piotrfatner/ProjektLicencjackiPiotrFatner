@@ -10,7 +10,7 @@ app.config(function($routeProvider) {
     // route for the home page
         .when('/', {
             templateUrl : 'views/home.html',
-            controller  : 'mainController'
+            controller  : 'homeController'
         })
 
         // route for the about page
@@ -68,10 +68,7 @@ var checkRouting= function ($q, $rootScope, $location,$http,$window) {
 };
 
 // create the controller and inject Angular's $scope
-app.controller('mainController', function($scope) {
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-});
+
 
 app.controller('aboutController', function($scope) {
     $scope.message = 'Look! I am an about page.';

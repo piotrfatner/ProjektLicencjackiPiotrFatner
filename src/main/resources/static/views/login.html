@@ -20,16 +20,18 @@
         </div>
     </nav>
 </header>
-<form  authentication-success-handler-ref="authSuccessHandler" ng-submit="login()" class="ng-cloak">
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input text="text" class="form-control" id="username" name="username"
-               ng-model="username"/>
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password"
-               ng-model="password"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container">
+    <form authentication-success-handler-ref="authSuccessHandler" ng-submit="login()" class="ng-cloak">
+        <div class="form-group">
+            <label for="username">Login:</label>
+            <input text="text" class="form-control" id="username" name="username"
+                   ng-model="username"/>
+            <label for="password">Hasło:</label>
+            <input type="password" class="form-control" id="password" name="password"
+                   ng-model="password"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Zaloguj!</button>
+    </form>
+</div>
 </body>
 </html>
