@@ -4,5 +4,5 @@ app.controller('userController', function($scope,$http,$window,$location) {
         $window.sessionStorage.setItem('userInfo-token',undefined);
         $window.sessionStorage.setItem('userInfo-userId',undefined);
         $location.path("/");
-    }
+    };
 });

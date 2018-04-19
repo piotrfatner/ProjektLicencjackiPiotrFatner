@@ -67,6 +67,7 @@ var checkRouting= function ($q, $rootScope, $location,$http,$window) {
     }
 };
 
+
 // create the controller and inject Angular's $scope
 
 

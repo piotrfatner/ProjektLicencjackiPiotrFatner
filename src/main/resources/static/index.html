@@ -15,7 +15,23 @@
     <script src="js/userController.js"></script>
 </head>
 <body ng-controller="homeController">
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" ng-hide=isLoggedAction() href="/">Klinika</a>
+                <a class="navbar-brand" ng-show=isLoggedAction() href="#!/userHome">Klinika</a>
+            </div>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/treatments"><i class="fa fa-shield"></i> Zabiegi</a></li>
+                <li><a href="#!/contact"><i class="fa fa-comment"></i> Kontakt</a></li>
+                <li ng-show=!(isLoggedAction())><a href="#!/login"><i class="login-btn"></i> Zaloguj sie!</a></li>
+                <li ng-show=isLoggedAction()><a href="" ng-controller="userController"  ng-click="logout()"><i class="login-btn"></i> Wyloguj sie!</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
 
 <!-- MAIN CONTENT AND INJECTED VIEWS -->
