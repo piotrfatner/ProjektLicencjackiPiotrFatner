@@ -19,6 +19,14 @@ app.config(function($routeProvider) {
             controller  : 'aboutController'
         })
 
+        .when('/treatments/laserHairRemoval', {
+            templateUrl : 'views/laserHairRemovalTreatment.html'
+        })
+
+        .when('/treatments/hairLoose', {
+            templateUrl : 'views/hairLooseTreatment.html'
+        })
+
         .when('/login', {
             templateUrl : 'views/login.html',
             controller  : 'loginController'
@@ -27,18 +35,6 @@ app.config(function($routeProvider) {
         .when('/userHome', {
             templateUrl : 'views/userHome.html',
             controller  : 'userController',
-            resolve:{
-                factory:checkRouting
-            }
-        })
-        .when('/userContact', {
-            templateUrl : 'views/userContact.html',
-            resolve:{
-                factory:checkRouting
-            }
-        })
-        .when('/userTreatments', {
-            templateUrl : 'views/userTreatments.html',
             resolve:{
                 factory:checkRouting
             }

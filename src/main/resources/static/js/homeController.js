@@ -22,7 +22,6 @@ app.controller('homeController', function($scope,$window) {
     };
 
     $scope.isLoggedAction = function () {
-        console.log("is logged method!");
         if($window.sessionStorage.getItem('userInfo-token') != null && $window.sessionStorage.getItem('userInfo-token').length == 40){
             return true;
         }
