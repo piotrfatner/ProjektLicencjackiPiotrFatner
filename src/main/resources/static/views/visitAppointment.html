@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Umawianie wizyty</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn-switch mb btn-switch-purple">
+                            <button  ng-click="toggleEventSource()" > Load Json</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div ng-model="eventSources"
+                     calendar="myCalendar"
+                     ui-calendar="uiConfig.calendar" class="calendar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

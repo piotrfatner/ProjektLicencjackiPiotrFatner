@@ -1,7 +1,7 @@
 // create the module and name it app
 // create the module and name it app
 // also include ngRoute for all our routing needs
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute','ui.calendar']);
 
 // configure our routes
 app.config(function($routeProvider) {
@@ -25,6 +25,14 @@ app.config(function($routeProvider) {
 
         .when('/treatments/hairLoose', {
             templateUrl : 'views/hairLooseTreatment.html'
+        })
+
+        .when('/visitAppointment', {
+            templateUrl : 'views/visitAppointment.html',
+            controller : 'visitAppointmentController',
+            resolve:{
+                factory:checkRouting
+            }
         })
 
         .when('/login', {
