@@ -89,7 +89,7 @@
     <orderEntry type="library" name="Maven: org.webjars:angular-ui-calendar:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:fullcalendar:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery-ui:1.10.3" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars.bower:fullcalendar:3.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.bower:fullcalendar:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars.bower:jquery:3.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars.bower:moment:2.22.1" level="project" />
   </component>
