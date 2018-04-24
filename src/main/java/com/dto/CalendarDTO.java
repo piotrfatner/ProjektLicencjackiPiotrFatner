@@ -1,6 +1,7 @@
 package com.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class CalendarDTO implements Serializable {
@@ -30,8 +31,8 @@ public class CalendarDTO implements Serializable {
         return start;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setStart(Timestamp start) {
+        this.start = new Date(start.getTime());
     }
 
     public Date getEnd() {

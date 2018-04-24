@@ -6,9 +6,17 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     var y = date.getFullYear();
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
-    $http.get("/getTreatmentsSchedule")
+    $http.get("/getTreatmentsSchedule/"+$window.sessionStorage.getItem('userInfo-userId'))
         .then(function (response) {
-            $scope.treatmentsSchedules.push(response.data);
+            $scope.treatmentsSchedules.slice(0, $scope.treatmentsSchedules.length);
+            angular.forEach(response.data, function (value) {
+               $scope.treatmentsSchedules.push({
+                   title:value.title,
+                   id: value.id,
+                   start: value.start,
+                   end:value.end
+               })
+            });
             console.log($scope.treatmentsSchedules);
 
         });
@@ -50,8 +58,8 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
                 if (title) {
                     eventData = {
                         title: title,
-                        start: new Date(2018, 4, 23, 10, 33, 0, 0),
-                        end: new Date(2018, 4, 23, 10, 33, 30, 0)
+                        start: start._d,
+                        end: end._d
                     };
                     $scope.addEvent(eventData);
                 }
@@ -59,11 +67,11 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
         }
     };
     $scope.addEvent = function (eventData) {
-        console.log(eventData);
-        console.log("before log");
-        console.log($scope.eventSources);
-        $scope.eventSources.push(eventData);
-        console.log($scope.eventSources);
+        $http.post('/postVisit', eventData).then(
+            function (response) {
+                console.log(response.data);
+            }, function (error) { console.log(error) }
+        );
     }
 
 });
