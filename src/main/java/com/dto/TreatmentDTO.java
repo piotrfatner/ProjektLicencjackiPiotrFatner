@@ -2,43 +2,53 @@ package com.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TreatmentDTO implements Serializable {
     private static final long serialVersionUID = 3594504287177758753L;
-    private long id;
-    private String title;
-    private Date start;
-    private Date end;
+    private Timestamp treatmentDate;
+    private String notes;
+    private long doctorId;
+    private long treatmentId;
+    private long userId;
 
-    public long getId() {
-        return id;
+    public Timestamp getTreatmentDate() {
+        return treatmentDate;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTreatmentDate(Timestamp treatmentDate) {
+        this.treatmentDate = treatmentDate;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public Date getStart() {
-        return start;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public Date getEnd() {
-        return end;
+    public long getTreatmentId() {
+        return treatmentId;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setTreatmentId(long treatmentId) {
+        this.treatmentId = treatmentId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

@@ -23,7 +23,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
 
     $scope.uiConfig = {
         calendar: {
-            /*defaultView:'agendaWeek',*/
+            defaultView:'agendaWeek',
 
             /*minTime: "08:00:00",
             maxTime: "17:00:00",*/
@@ -32,7 +32,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             firstDay: 1,
             locale: 'pl',
             lang: 'pl',
-            timezone: false,
+            timezone: 'local',
             editable: true,
             header: {
                 left: 'agendaWeek,agendaDay',
@@ -57,9 +57,11 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
                 console.log(moment);
                 if (title) {
                     eventData = {
-                        title: title,
-                        start: start._d,
-                        end: end._d
+                        notes: title,
+                        treatmentDate: start._d,
+                        userId:$window.sessionStorage.getItem('userInfo-userId'),
+                        doctorId:1,
+                        treatmentId:1
                     };
                     $scope.addEvent(eventData);
                 }
@@ -70,6 +72,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
         $http.post('/postVisit', eventData).then(
             function (response) {
                 console.log(response.data);
+                $window.location.reload();
             }, function (error) { console.log(error) }
         );
     }
