@@ -1,18 +1,19 @@
 package com.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 public class TreatmentDTO implements Serializable {
     private static final long serialVersionUID = 3594504287177758753L;
-    private Timestamp treatmentDate;
+    private Date treatmentDate;
     private String notes;
     private long doctorId;
     private long treatmentId;
     private long userId;
+    private String treatmentName;
 
-    public Timestamp getTreatmentDate() {
+    public Date getTreatmentDate() {
         return treatmentDate;
     }
 
@@ -50,5 +51,13 @@ public class TreatmentDTO implements Serializable {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getTreatmentName() {
+        return treatmentName;
+    }
+
+    public void setTreatmentName(String treatmentName) {
+        this.treatmentName = treatmentName;
     }
 }

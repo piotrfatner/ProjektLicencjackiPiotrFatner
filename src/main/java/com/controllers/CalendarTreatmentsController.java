@@ -30,6 +30,11 @@ public class CalendarTreatmentsController {
         return calendarTreatmentsService.insertNewVisit(newReservedTreatment);
     }
 
+    @RequestMapping(value = "/getTreatmentsForUser/{userId}", method = RequestMethod.GET)
+    public List<TreatmentDTO> getTreatmentsForUser(@PathVariable("userId") long userId) {
+        return calendarTreatmentsService.getCalendarTreatmentsForUser(userId);
+    }
+
     public Date parseDate(Date date){
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ft.setTimeZone(TimeZone.getTimeZone("UTC"));

@@ -25,4 +25,9 @@ public class CalendarTreatmentsService {
         }
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
+    public List<TreatmentDTO> getCalendarTreatmentsForUser(long userId){
+        return calendarDao.getCalendarTreatmentsForUser(userId);
+    }
 }

@@ -27,7 +27,7 @@
         Koszt zabiegu waha się od 200 do 250 zł i jest zależny od wybranej partii ciała.
     </div>
     <div ng-controller="homeController" ng-show="isLoggedAction()" style="padding-bottom: 2%">
-        <button type="button" class="btn btn-default"><a  href="#!/visitAppointment"/>Umów wizytę</button>
+        <button ng-controller="visitAppointmentController" ng-click="setScope(1)" type="button" class="btn btn-default">Umów wizytę</button>
     </div>
     <div>
         <div class="col-md-6" style="padding-left: 0%"><img src="/images/laserHairRemoval.jpg" style="width: 100%;"></div>

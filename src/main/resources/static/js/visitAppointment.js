@@ -4,6 +4,13 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+    var treatmentIdInit;
+    $scope.setScope = function (treatmentId) {
+        /*console.log("setScopeMethod~!");
+        console.log(treatmentId);
+        treatmentIdInit = treatmentId;*/
+      $location.path("/visitAppointment")
+    };
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
     $http.get("/getTreatmentsSchedule/"+$window.sessionStorage.getItem('userInfo-userId'))
@@ -25,8 +32,8 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
         calendar: {
             defaultView:'agendaWeek',
 
-            /*minTime: "08:00:00",
-            maxTime: "17:00:00",*/
+            minTime: "08:00:00",
+            maxTime: "19:00:00",
             weekends: false,
             height: 400,
             firstDay: 1,
@@ -49,10 +56,6 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             select: function (start, end, moment) {
                 var title = prompt('Event Title:');
                 var eventData;
-                console.log("start:");
-                console.log(start._d.getUTCDate());
-                console.log("end:");
-                console.log(end);
                 console.log("another:");
                 console.log(moment);
                 if (title) {
