@@ -33,4 +33,12 @@ public class LoginService {
         }
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
+
+    public boolean checkAuth(String token){
+        UserDTO userDTO = loginDao.getTokenCheck(token);
+        if(userDTO!=null){
+            return true;
+        }
+        return false;
+    }
 }

@@ -5,27 +5,44 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     var m = date.getMonth();
     var y = date.getFullYear();
     $scope.treatmentId = $routeParams.treatmentId;
-    $scope.setScope = function () {
 
-    };
-    $scope.setScope();
+    $scope.avaliableDoctors = [];
+
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
-    $http.get("/getTreatmentsSchedule/"+$window.sessionStorage.getItem('userInfo-userId'))
-        .then(function (response) {
-            $scope.treatmentsSchedules.slice(0, $scope.treatmentsSchedules.length);
-            angular.forEach(response.data, function (value) {
-               $scope.treatmentsSchedules.push({
-                   title:value.title,
-                   id: value.id,
-                   start: value.start,
-                   end:value.end,
-                   stick:true
-               })
-            });
-            console.log($scope.treatmentsSchedules);
 
-        });
+    $scope.getTreatmentsForDoctor = function (doctorId) {
+        console.log("aaa");
+        console.log(doctorId);
+        $http.get("/getTreatmentsSchedule/"+doctorId+"/"+$window.sessionStorage.getItem('userInfo-token'))
+            .then(function (response) {
+                $scope.treatmentsSchedules.slice(0, $scope.treatmentsSchedules.length);
+                angular.forEach(response.data, function (value) {
+                    $scope.treatmentsSchedules.push({
+                        title:value.title,
+                        id: value.id,
+                        start: value.start,
+                        end:value.end,
+                        stick:true
+                    })
+                });
+                console.log($scope.treatmentsSchedules);
+
+            });
+
+    };
+
+    $scope.getAvailableDoctorsForTreatment = function () {
+        $http.get("/getAvailableDoctors/"+$scope.treatmentId+"/"+$window.sessionStorage.getItem('userInfo-token'))
+            .then(function (response) {
+                $scope.avaliableDoctors = response.data;
+                console.log($scope.avaliableDoctors[0].doctorId);
+                $scope.getTreatmentsForDoctor($scope.avaliableDoctors[0].doctorId);
+
+            }).catch(function (reason) {});
+    };
+
+    $scope.getAvailableDoctorsForTreatment();
 
     $scope.uiConfig = {
         calendar: {
@@ -64,7 +81,8 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
                         treatmentDate: start._d,
                         userId:$window.sessionStorage.getItem('userInfo-userId'),
                         doctorId:1,
-                        treatmentId:1
+                        treatmentId:1,
+                        token: $window.sessionStorage.getItem('userInfo-token')
                     };
                     $scope.addEvent(eventData);
                 }

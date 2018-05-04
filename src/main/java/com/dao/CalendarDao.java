@@ -1,8 +1,10 @@
 package com.dao;
 
 import com.dto.CalendarDTO;
+import com.dto.DoctorDTO;
 import com.dto.TreatmentDTO;
 import com.mapper.CalendarMapper;
+import com.mapper.DoctorMapper;
 import com.mapper.TreatmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,5 +35,13 @@ public class CalendarDao {
                 "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
                 "where rt.USER_ID_FK = ?";
         return template.query(sql, new Object[]{userId}, new TreatmentMapper());
+    }
+
+    public List<DoctorDTO> getAvailableDoctors(long treatmentId) {
+        String sql = "select d.* " +
+                "from tbl_doctor d " +
+                "JOIN tbl_doctor_treatment dt ON d.DOCTOR_ID = dt.DOCTOR_ID_FK " +
+                "WHERE dt.TREATMENT_ID_FK =?";
+        return template.query(sql, new Object[]{treatmentId}, new DoctorMapper());
     }
 }

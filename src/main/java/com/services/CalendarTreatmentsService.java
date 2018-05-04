@@ -2,6 +2,7 @@ package com.services;
 
 import com.dao.CalendarDao;
 import com.dto.CalendarDTO;
+import com.dto.DoctorDTO;
 import com.dto.TreatmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,5 +30,9 @@ public class CalendarTreatmentsService {
 
     public List<TreatmentDTO> getCalendarTreatmentsForUser(long userId){
         return calendarDao.getCalendarTreatmentsForUser(userId);
+    }
+
+    public List<DoctorDTO> getAvailableDoctors(long treatmentId){
+        return calendarDao.getAvailableDoctors(treatmentId);
     }
 }

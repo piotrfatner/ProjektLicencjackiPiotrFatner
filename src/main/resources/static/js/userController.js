@@ -7,7 +7,7 @@ app.controller('userController', function($scope,$http,$window,$location) {
     };
     $scope.treatmentsForUser=[];
     $scope.getTreatmentsForUser = function () {
-        $http.get("/getTreatmentsForUser/"+$window.sessionStorage.getItem('userInfo-userId'))
+        $http.get("/getTreatmentsForUser/"+$window.sessionStorage.getItem('userInfo-userId')+"/"+$window.sessionStorage.getItem('userInfo-token'))
             .then(function (response) {
                 console.log(response.data);
                 $scope.treatmentsForUser = response.data;

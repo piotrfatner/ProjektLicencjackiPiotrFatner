@@ -12,6 +12,7 @@ public class TreatmentDTO implements Serializable {
     private long treatmentId;
     private long userId;
     private String treatmentName;
+    private String token;
 
     public Date getTreatmentDate() {
         return treatmentDate;
@@ -59,5 +60,13 @@ public class TreatmentDTO implements Serializable {
 
     public void setTreatmentName(String treatmentName) {
         this.treatmentName = treatmentName;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
