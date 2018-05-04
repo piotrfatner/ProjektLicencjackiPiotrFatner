@@ -27,7 +27,7 @@ app.config(function($routeProvider) {
             templateUrl : 'views/hairLooseTreatment.html'
         })
 
-        .when('/visitAppointment', {
+        .when('/visitAppointment/:treatmentId', {
             templateUrl : 'views/visitAppointment.html',
             controller : 'visitAppointmentController',
             resolve:{

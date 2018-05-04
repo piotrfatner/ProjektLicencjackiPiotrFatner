@@ -10,7 +10,7 @@
     <p>Twoje zabiegi:</p>
     <div ng-controller="userController" ng-init="getTreatmentsForUser()">
         <div ng-repeat="treatment in treatmentsForUser">
-            {{treatment}}
+            {{treatment.treatmentDate | date: 'yyyy-MM-dd HH:mm:ss'}}
         </div>
     </div>
     <p></p>

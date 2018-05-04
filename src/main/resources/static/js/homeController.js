@@ -1,4 +1,4 @@
-app.controller('homeController', function($scope,$window) {
+app.controller('homeController', function($scope,$window,$location) {
     // create a message to display in our view
     var rotator;
     var rotatedImageId = 'rotator';
@@ -6,6 +6,10 @@ app.controller('homeController', function($scope,$window) {
     var num =0;
     $scope.setScope = function () {
         $scope.isLoggedAction();
+    };
+
+    $scope.goToVisitAppointment = function (treatmentId) {
+        $location.path("/visitAppointment/"+treatmentId);
     };
 
     $scope.rotateImages = function () {

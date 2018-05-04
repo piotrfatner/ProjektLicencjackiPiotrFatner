@@ -22,7 +22,7 @@
         Koszt zabiegu waha się od 500 do 650 zł.
     </div>
     <div ng-controller="homeController" ng-show="isLoggedAction()" style="padding-bottom: 2%">
-        <button type="button" class="btn btn-default" >Umów wizytę</button>
+        <button type="button" ng-click="goToVisitAppointment(2)" class="btn btn-default" >Umów wizytę</button>
     </div>
     <div>
         <div class="col-md-6" style="padding-left: 0%"><img src="/images/hairLoose.jpg" style="width: 100%;">

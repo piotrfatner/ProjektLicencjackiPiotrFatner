@@ -1,16 +1,14 @@
-app.controller('visitAppointmentController', function ($scope, $http, $window, $location, uiCalendarConfig) {
+app.controller('visitAppointmentController', function ($scope, $http, $window, $location, $routeParams, uiCalendarConfig) {
     $scope.today = new Date();
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-    var treatmentIdInit;
-    $scope.setScope = function (treatmentId) {
-        /*console.log("setScopeMethod~!");
-        console.log(treatmentId);
-        treatmentIdInit = treatmentId;*/
-      $location.path("/visitAppointment")
+    $scope.treatmentId = $routeParams.treatmentId;
+    $scope.setScope = function () {
+
     };
+    $scope.setScope();
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
     $http.get("/getTreatmentsSchedule/"+$window.sessionStorage.getItem('userInfo-userId'))
@@ -21,7 +19,8 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
                    title:value.title,
                    id: value.id,
                    start: value.start,
-                   end:value.end
+                   end:value.end,
+                   stick:true
                })
             });
             console.log($scope.treatmentsSchedules);
@@ -41,6 +40,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             lang: 'pl',
             timezone: 'local',
             editable: true,
+            stick:true,
             header: {
                 left: 'agendaWeek,agendaDay',
                 center: 'title',
