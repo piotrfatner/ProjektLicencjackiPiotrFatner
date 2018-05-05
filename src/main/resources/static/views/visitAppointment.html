@@ -6,6 +6,10 @@
 </head>
 <body>
 <div class="container">
+    <div>Dostępni doktorzy:</div>
+    <div class="radio" ng-repeat="doctor in avaliableDoctors">
+        <label><input type="radio" name="optradio" value="{{doctor.doctorId}}" ng-model="doctor.checkbox"  ng-checked="$first" ng-click="changeDoctor(doctor.checkbox)">{{doctor.firstName}} {{doctor.lastName}} {{doctor.specialization}}</label>
+    </div>
     <div>
         <div class="panel panel-default">
             <div class="panel-body">
