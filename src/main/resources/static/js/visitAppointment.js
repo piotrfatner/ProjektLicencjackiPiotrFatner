@@ -10,6 +10,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
 
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
+    $scope.selectedDoctor = "";
 
     $scope.getTreatmentsForDoctor = function (doctorId) {
         $http.get("/getTreatmentsSchedule/" + doctorId + "/" + $window.sessionStorage.getItem('userInfo-token'))
@@ -31,11 +32,13 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     };
 
     $scope.getAvailableDoctorsForTreatment = function () {
+        console.log($scope.treatmentId);
         $http.get("/getAvailableDoctors/" + $scope.treatmentId + "/" + $window.sessionStorage.getItem('userInfo-token'))
             .then(function (response) {
                 $scope.avaliableDoctors = response.data;
                 console.log(response.data);
                 console.log($scope.avaliableDoctors[0].doctorId);
+                $scope.selectedDoctor = $scope.avaliableDoctors[0].doctorId;
                 $scope.getTreatmentsForDoctor($scope.avaliableDoctors[0].doctorId);
 
             }).catch(function (reason) {
@@ -46,6 +49,9 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
         console.log("new doctor:");
         console.log(doctorId);
         $scope.treatmentsSchedules.splice(0,$scope.treatmentsSchedules.length);
+        $scope.selectedDoctor = doctorId;
+        console.log("selectedDoctor:");
+        console.log($scope.selectedDoctor);
         console.log($scope.treatmentsSchedules);
         $scope.getTreatmentsForDoctor(doctorId);
     };
@@ -88,8 +94,8 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
                         notes: title,
                         treatmentDate: start._d,
                         userId: $window.sessionStorage.getItem('userInfo-userId'),
-                        doctorId: 1,
-                        treatmentId: 1,
+                        doctorId: $scope.selectedDoctor,
+                        treatmentId: $scope.treatmentId,
                         token: $window.sessionStorage.getItem('userInfo-token')
                     };
                     $scope.addEvent(eventData);
