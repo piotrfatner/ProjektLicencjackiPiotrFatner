@@ -44,6 +44,14 @@ public class CalendarTreatmentsController {
         return null;
     }
 
+    @RequestMapping(value = "/getTreatmentsHistoryForUser/{userId}/{token}", method = RequestMethod.GET)
+    public List<TreatmentDTO> getTreatmentsHistoryForUser(@PathVariable("userId") long userId, @PathVariable("token") String token) {
+        if(loginService.checkAuth(token)){
+            return calendarTreatmentsService.getCalendarTreatmentsHistoryForUser(userId);
+        }
+        return null;
+    }
+
     @RequestMapping(value = "/getAvailableDoctors/{treatmentId}/{token}", method = RequestMethod.GET)
     public List<DoctorDTO> getAvailableDoctors(@PathVariable("treatmentId") long treatmentId, @PathVariable("token") String token) {
         if(loginService.checkAuth(token)){
@@ -52,4 +60,12 @@ public class CalendarTreatmentsController {
         return null;
     }
 
+
+    @RequestMapping(value = "/getTreatment/{treatmentId}/{token}", method = RequestMethod.GET)
+    public TreatmentDTO getTreatment(@PathVariable("treatmentId") long treatmentId, @PathVariable("token") String token) {
+        if(loginService.checkAuth(token)){
+            return calendarTreatmentsService.getTreatment(treatmentId);
+        }
+        return null;
+    }
 }

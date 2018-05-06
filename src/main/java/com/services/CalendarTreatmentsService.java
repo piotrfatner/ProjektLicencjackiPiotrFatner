@@ -32,7 +32,15 @@ public class CalendarTreatmentsService {
         return calendarDao.getCalendarTreatmentsForUser(userId);
     }
 
+    public List<TreatmentDTO> getCalendarTreatmentsHistoryForUser(long userId){
+        return calendarDao.getCalendarTreatmentsHistoryForUser(userId);
+    }
+
     public List<DoctorDTO> getAvailableDoctors(long treatmentId){
         return calendarDao.getAvailableDoctors(treatmentId);
+    }
+
+    public TreatmentDTO getTreatment(long userId){
+        return calendarDao.getTreatment(userId);
     }
 }

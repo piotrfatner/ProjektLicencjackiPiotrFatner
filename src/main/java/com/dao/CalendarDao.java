@@ -33,7 +33,17 @@ public class CalendarDao {
         String sql = "SELECT rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
                 "from tbl_reserved_treatment rt " +
                 "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
-                "where rt.USER_ID_FK = ?";
+                "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE > now() " +
+                "order by rt.TREATMENT_DATE";
+        return template.query(sql, new Object[]{userId}, new TreatmentMapper());
+    }
+
+    public List<TreatmentDTO> getCalendarTreatmentsHistoryForUser(long userId) {
+        String sql = "SELECT rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
+                "from tbl_reserved_treatment rt " +
+                "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
+                "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE < now() " +
+                "order by rt.TREATMENT_DATE DESC";
         return template.query(sql, new Object[]{userId}, new TreatmentMapper());
     }
 
@@ -43,5 +53,13 @@ public class CalendarDao {
                 "JOIN tbl_doctor_treatment dt ON d.DOCTOR_ID = dt.DOCTOR_ID_FK " +
                 "WHERE dt.TREATMENT_ID_FK =?";
         return template.query(sql, new Object[]{treatmentId}, new DoctorMapper());
+    }
+
+
+    public TreatmentDTO getTreatment(long treatmentId) {
+        String sql = "SELECT t.*, NULL AS TREATMENT_DATE, '' AS NOTES " +
+                "from  tbl_treatment t " +
+                "where t.TREATMENT_ID = ?";
+        return template.queryForObject(sql, new Object[]{treatmentId}, new TreatmentMapper());
     }
 }

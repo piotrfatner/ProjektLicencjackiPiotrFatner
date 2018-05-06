@@ -6,19 +6,26 @@
 </head>
 <body>
 <div class="container">
-    <p>Witaj! Wlasnie sie zalogowales!</p>
-    <p>Twoje zabiegi:</p>
-    <div ng-controller="userController" ng-init="getTreatmentsForUser()">
-        <div ng-repeat="treatment in treatmentsForUser">
-            {{treatment.treatmentDate | date: 'yyyy-MM-dd HH:mm:ss'}}
-        </div>
+    <p>Twoje umówione zabiegi:</p>
+    <div style="padding-bottom: 2%">
+        <table style="min-width: 60%;" ng-init="getTreatmentsForUser()">
+            <tr ng-repeat="treatment in treatmentsForUser">
+                <td style="padding-right: 2%">{{treatment.treatmentName}}</td>
+                <td>{{treatment.notes}}</td>
+                <td>{{treatment.treatmentDate | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+        </table>
     </div>
-    <p></p>
-    <p></p>
     <p>Historia twoich zabiegow:</p>
-    <p>---Historia---</p>
-    <p></p>
-    <p></p>
+    <div style="padding-bottom: 2%">
+        <table style="min-width: 60%;" ng-init="getTreatmentsHistoryForUser()">
+            <tr ng-repeat="treatmentHistory in treatmentsHistoryForUser">
+                <td style="padding-right: 2%">{{treatmentHistory.treatmentName}}</td>
+                <td>{{treatmentHistory.notes}}</td>
+                <td>{{treatmentHistory.treatmentDate | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

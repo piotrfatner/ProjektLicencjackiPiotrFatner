@@ -7,10 +7,18 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     $scope.treatmentId = $routeParams.treatmentId;
 
     $scope.avaliableDoctors = [];
-
     $scope.treatmentsSchedules = [];
     $scope.eventSources = [$scope.treatmentsSchedules];
     $scope.selectedDoctor = "";
+    $scope.selectedTreatment = [];
+
+    $scope.getSelectedTreatment = function () {
+        $http.get("/getTreatment/" + $scope.treatmentId + "/" + $window.sessionStorage.getItem('userInfo-token'))
+            .then(function (response) {
+                $scope.selectedTreatment = response.data;
+            }).catch(function (reason) {
+        });
+    }
 
     $scope.getTreatmentsForDoctor = function (doctorId) {
         $http.get("/getTreatmentsSchedule/" + doctorId + "/" + $window.sessionStorage.getItem('userInfo-token'))
@@ -57,6 +65,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     };
 
     $scope.getAvailableDoctorsForTreatment();
+    $scope.getSelectedTreatment();
 
     $scope.uiConfig = {
         calendar: {
