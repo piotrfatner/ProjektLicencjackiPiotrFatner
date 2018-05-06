@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 public class TreatmentDTO implements Serializable {
     private static final long serialVersionUID = 3594504287177758753L;
+    private long reservedTreatmentId;
     private Date treatmentDate;
     private String notes;
     private long doctorId;
@@ -13,6 +14,14 @@ public class TreatmentDTO implements Serializable {
     private long userId;
     private String treatmentName;
     private String token;
+
+    public long getReservedTreatmentId() {
+        return reservedTreatmentId;
+    }
+
+    public void setReservedTreatmentId(long reservedTreatmentId) {
+        this.reservedTreatmentId = reservedTreatmentId;
+    }
 
     public Date getTreatmentDate() {
         return treatmentDate;

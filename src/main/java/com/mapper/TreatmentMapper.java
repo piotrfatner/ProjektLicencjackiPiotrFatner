@@ -10,6 +10,7 @@ public class TreatmentMapper implements RowMapper<TreatmentDTO> {
     @Override
     public TreatmentDTO mapRow(ResultSet resultSet, int i) throws SQLException {
         TreatmentDTO treatmentDTO = new TreatmentDTO();
+        treatmentDTO.setReservedTreatmentId(resultSet.getLong("RESERVED_TREATMENT_ID"));
         treatmentDTO.setTreatmentDate(resultSet.getTimestamp("TREATMENT_DATE"));
         treatmentDTO.setNotes(resultSet.getString("NOTES"));
         treatmentDTO.setTreatmentName(resultSet.getString("NAME"));

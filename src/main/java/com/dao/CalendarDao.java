@@ -30,7 +30,7 @@ public class CalendarDao {
     }
 
     public List<TreatmentDTO> getCalendarTreatmentsForUser(long userId) {
-        String sql = "SELECT rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
+        String sql = "SELECT rt.RESERVED_TREATMENT_ID,rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
                 "from tbl_reserved_treatment rt " +
                 "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
                 "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE > now() " +
@@ -39,7 +39,7 @@ public class CalendarDao {
     }
 
     public List<TreatmentDTO> getCalendarTreatmentsHistoryForUser(long userId) {
-        String sql = "SELECT rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
+        String sql = "SELECT rt.RESERVED_TREATMENT_ID,rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
                 "from tbl_reserved_treatment rt " +
                 "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
                 "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE < now() " +
@@ -57,7 +57,7 @@ public class CalendarDao {
 
 
     public TreatmentDTO getTreatment(long treatmentId) {
-        String sql = "SELECT t.*, NULL AS TREATMENT_DATE, '' AS NOTES " +
+        String sql = "SELECT t.*, NULL AS TREATMENT_DATE, '' AS NOTES, 0 AS RESERVED_TREATMENT_ID " +
                 "from  tbl_treatment t " +
                 "where t.TREATMENT_ID = ?";
         return template.queryForObject(sql, new Object[]{treatmentId}, new TreatmentMapper());

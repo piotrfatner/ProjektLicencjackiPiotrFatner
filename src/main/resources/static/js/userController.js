@@ -24,4 +24,13 @@ app.controller('userController', function($scope,$http,$window,$location) {
             }).catch(function (reason) {  });
 
     };
+    
+    $scope.cancelVisit = function () {
+        console.log("cancel Function!");
+        $scope.modalHeader = "Sukces!";
+        $scope.modalBody = "Udało ci się wypożyczyć książkę!";
+        angular.element("#myModal").modal("show");
+
+        //console.log($("myModal"));
+    };
 });
