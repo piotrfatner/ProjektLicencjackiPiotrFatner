@@ -36,21 +36,6 @@ public class CalendarTreatmentsController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 
-    @RequestMapping(value = "/getTreatmentsForUser/{userId}/{token}", method = RequestMethod.GET)
-    public List<TreatmentDTO> getTreatmentsForUser(@PathVariable("userId") long userId, @PathVariable("token") String token) {
-        if(loginService.checkAuth(token)){
-            return calendarTreatmentsService.getCalendarTreatmentsForUser(userId);
-        }
-        return null;
-    }
-
-    @RequestMapping(value = "/getTreatmentsHistoryForUser/{userId}/{token}", method = RequestMethod.GET)
-    public List<TreatmentDTO> getTreatmentsHistoryForUser(@PathVariable("userId") long userId, @PathVariable("token") String token) {
-        if(loginService.checkAuth(token)){
-            return calendarTreatmentsService.getCalendarTreatmentsHistoryForUser(userId);
-        }
-        return null;
-    }
 
     @RequestMapping(value = "/getAvailableDoctors/{treatmentId}/{token}", method = RequestMethod.GET)
     public List<DoctorDTO> getAvailableDoctors(@PathVariable("treatmentId") long treatmentId, @PathVariable("token") String token) {

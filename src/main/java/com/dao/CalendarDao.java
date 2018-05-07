@@ -29,24 +29,6 @@ public class CalendarDao {
         //return 1;
     }
 
-    public List<TreatmentDTO> getCalendarTreatmentsForUser(long userId) {
-        String sql = "SELECT rt.RESERVED_TREATMENT_ID,rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
-                "from tbl_reserved_treatment rt " +
-                "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
-                "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE > now() " +
-                "order by rt.TREATMENT_DATE";
-        return template.query(sql, new Object[]{userId}, new TreatmentMapper());
-    }
-
-    public List<TreatmentDTO> getCalendarTreatmentsHistoryForUser(long userId) {
-        String sql = "SELECT rt.RESERVED_TREATMENT_ID,rt.TREATMENT_DATE, rt.NOTES, t.NAME " +
-                "from tbl_reserved_treatment rt " +
-                "JOIN tbl_treatment t ON rt.TREATMENT_ID_FK = t.TREATMENT_ID " +
-                "where rt.USER_ID_FK = ? and rt.TREATMENT_DATE < now() " +
-                "order by rt.TREATMENT_DATE DESC";
-        return template.query(sql, new Object[]{userId}, new TreatmentMapper());
-    }
-
     public List<DoctorDTO> getAvailableDoctors(long treatmentId) {
         String sql = "select d.* " +
                 "from tbl_doctor d " +
