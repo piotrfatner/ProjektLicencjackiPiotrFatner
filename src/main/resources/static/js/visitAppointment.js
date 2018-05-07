@@ -11,6 +11,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     $scope.eventSources = [$scope.treatmentsSchedules];
     $scope.selectedDoctor = "";
     $scope.selectedTreatment = [];
+    $scope.selectedVisitDate = "";
 
     $scope.getSelectedTreatment = function () {
         $http.get("/getTreatment/" + $scope.treatmentId + "/" + $window.sessionStorage.getItem('userInfo-token'))
@@ -56,7 +57,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
     $scope.changeDoctor = function (doctorId) {
         console.log("new doctor:");
         console.log(doctorId);
-        $scope.treatmentsSchedules.splice(0,$scope.treatmentsSchedules.length);
+        $scope.treatmentsSchedules.splice(0, $scope.treatmentsSchedules.length);
         $scope.selectedDoctor = doctorId;
         console.log("selectedDoctor:");
         console.log($scope.selectedDoctor);
@@ -98,33 +99,42 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             selectHelper: true,
             unselectAuto: true,
             select: function (start, end, moment) {
-                var title = prompt('Event Title:');
-                var eventData;
-                console.log("another:");
-                console.log(moment);
-                if (title) {
-                    eventData = {
-                        notes: title,
-                        treatmentDate: start._d,
-                        userId: $window.sessionStorage.getItem('userInfo-userId'),
-                        doctorId: $scope.selectedDoctor,
-                        treatmentId: $scope.treatmentId,
-                        token: $window.sessionStorage.getItem('userInfo-token')
-                    };
-                    $scope.addEvent(eventData);
-                }
+                console.log("select!");
+                $scope.modalBody1 = "Umów wizytę na :" + $scope.selectedTreatment.treatmentName;
+                $scope.selectedVisitDateUI = start._d;
+                $scope.modalBody2 = "Data: ";
+                angular.element("#myModal").modal("show");
+                $scope.selectedVisitDate = start._d;
             }
         }
     };
-    $scope.addEvent = function (eventData) {
-        $http.post('/postVisit', eventData).then(
+
+    $scope.addEvent = function () {
+        self.eventData = {
+            notes: $scope.visitDetails,
+            treatmentDate: $scope.selectedVisitDate,
+            userId: $window.sessionStorage.getItem('userInfo-userId'),
+            doctorId: $scope.selectedDoctor,
+            treatmentId: $scope.treatmentId,
+            token: $window.sessionStorage.getItem('userInfo-token')
+        };
+        console.log(eventData);
+        $http.post('/postVisit', self.eventData).then(
             function (response) {
-                console.log(response.data);
-                $window.location.reload();
+                $scope.treatmentsSchedules.splice(0, $scope.treatmentsSchedules.length);
+                $scope.getTreatmentsForDoctor($scope.selectedDoctor);
+                angular.element("#myModal").modal("hide");
             }, function (error) {
+                angular.element("#myModal").modal("hide");
                 console.log(error)
             }
         );
-    }
+    };
+
+    $scope.clearModal = function () {
+        console.log($scope.visitDetails);
+        $scope.visitDetails = "";
+        console.log($scope.visitDetails);
+    };
 
 });
