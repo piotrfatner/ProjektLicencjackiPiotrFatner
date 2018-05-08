@@ -93,7 +93,7 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             // Select options
             selectable: true,
             selectConstraint: {
-                start: $.fullCalendar.moment().subtract(1, 'days'),
+                start: $.fullCalendar.moment().subtract(1, 'hours'),
                 end: $.fullCalendar.moment().startOf('month').add(3, 'month')
             },
             selectHelper: true,

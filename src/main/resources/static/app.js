@@ -27,6 +27,14 @@ app.config(function($routeProvider) {
             templateUrl : 'views/hairLooseTreatment.html'
         })
 
+        .when('/treatments/bodyCosmetic', {
+            templateUrl : 'views/bodyCosmetic.html'
+        })
+
+        .when('/treatments/peelTreatment', {
+            templateUrl : 'views/peelTreatment.html'
+        })
+
         .when('/visitAppointment/:treatmentId', {
             templateUrl : 'views/visitAppointment.html',
             controller : 'visitAppointmentController',

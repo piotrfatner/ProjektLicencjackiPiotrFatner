@@ -37,8 +37,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#!/treatments"><i class="fa fa-shield"></i> Zabiegi</a></li>
                 <li><a href="#!/contact"><i class="fa fa-comment"></i> Kontakt</a></li>
-                <li ng-show=!(isLoggedAction())><a href="#!/login"><i class="login-btn"></i> Zaloguj sie!</a></li>
-                <li ng-show=isLoggedAction()><a href="" ng-controller="userController"  ng-click="logout()"><i class="login-btn"></i> Wyloguj sie!</a></li>
+                <li ng-show=!(isLoggedAction())><a href="#!/login">Zaloguj się <span class="glyphicon glyphicon-log-in"></span></a></li>
+                <li ng-show=isLoggedAction()><a href="" ng-controller="userController"  ng-click="logout()">Wyloguj się <span class="glyphicon glyphicon-log-out"></span></a></li>
             </ul>
         </div>
     </nav>
