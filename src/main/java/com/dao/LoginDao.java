@@ -14,7 +14,7 @@ public class LoginDao {
 
     public UserDTO getUserId(String username, String password){
         String sql = "select USER_ID, USERNAME, EMAIL, TOKEN from tbl_user u " +
-                "JOIN tbl_password p ON u.USER_ID = p.PASSWORD_ID " +
+                "JOIN tbl_password p ON u.USER_ID = p.USER_ID_FK " +
                 "JOIN tbl_token t ON t.USER_ID_FK = u.USER_ID " +
                 "WHERE u.USERNAME = ? AND p.PASSWORD = ?;";
         try{
@@ -26,7 +26,7 @@ public class LoginDao {
 
     public UserDTO getTokenCheck(String token){
         String sql = "select USER_ID, USERNAME, EMAIL, TOKEN from tbl_user u " +
-                "JOIN tbl_password p ON u.USER_ID = p.PASSWORD_ID " +
+                "JOIN tbl_password p ON u.USER_ID = p.USER_ID_FK " +
                 "JOIN tbl_token t ON t.USER_ID_FK = u.USER_ID " +
                 "WHERE t.TOKEN = ?;";
         try{

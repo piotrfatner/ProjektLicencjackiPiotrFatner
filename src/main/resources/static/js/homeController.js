@@ -2,7 +2,7 @@ app.controller('homeController', function($scope,$window,$location) {
     // create a message to display in our view
     var rotator;
     var rotatedImageId = 'rotator';
-    var images = ['/images/image1.jpg','/images/image2.jpg'];
+    var images = ['/images/image1.jpg','/images/image2.jpg','/images/image3.jpg'];
     var num =0;
     $scope.setScope = function () {
         $scope.isLoggedAction();

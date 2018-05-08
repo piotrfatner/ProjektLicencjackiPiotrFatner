@@ -73,9 +73,9 @@ app.controller('visitAppointmentController', function ($scope, $http, $window, $
             defaultView: 'agendaWeek',
 
             minTime: "08:00:00",
-            maxTime: "19:00:00",
+            maxTime: "18:00:00",
             weekends: false,
-            height: 400,
+            height: 450,
             firstDay: 1,
             locale: 'pl',
             lang: 'pl',
