@@ -35,6 +35,10 @@ app.config(function($routeProvider) {
             templateUrl : 'views/peelTreatment.html'
         })
 
+        .when('/treatments/eyeCosmetic', {
+            templateUrl : 'views/eyeCosmetic.html'
+        })
+
         .when('/visitAppointment/:treatmentId', {
             templateUrl : 'views/visitAppointment.html',
             controller : 'visitAppointmentController',
