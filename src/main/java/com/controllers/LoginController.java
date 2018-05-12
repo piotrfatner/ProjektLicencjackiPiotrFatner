@@ -33,6 +33,11 @@ public class LoginController {
         return loginService.tokenCheck(user.getToken());
     }
 
+    @RequestMapping(value="/checkTokenForDoctor", method = RequestMethod.POST)
+    public ResponseEntity<?> checkTokenForDoctor(@RequestBody UserDTO user){
+        return loginService.tokenCheckForDoctor(user.getToken());
+    }
+
     public static String generateToken() {
         StringBuilder token = new StringBuilder(40);
         for (int i = 0; i < 40; i++) {

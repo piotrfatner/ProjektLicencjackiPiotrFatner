@@ -13,6 +13,7 @@ public class UserMapper implements RowMapper<UserDTO> {
         userDTO.setUserId(resultSet.getLong("USER_ID"));
         userDTO.setUsername(resultSet.getString("USERNAME"));
         userDTO.setEmail(resultSet.getString("EMAIL"));
+        userDTO.setRole(resultSet.getString("ROLE"));
         userDTO.setToken(resultSet.getString("TOKEN"));
         return userDTO;
     }

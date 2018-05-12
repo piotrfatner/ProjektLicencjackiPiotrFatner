@@ -14,6 +14,7 @@ app.controller('loginController', function($scope,$http, $window,$location) {
                 console.log(response.data);
                 $window.sessionStorage.setItem('userInfo-token',response.data.token);
                 $window.sessionStorage.setItem('userInfo-userId',response.data.userId);
+                $window.sessionStorage.setItem('userInfo-isDoctor',response.data.isDoctor);
                 $location.path(response.data.redirectSide);
             }, function (error) { console.log(error) }
         );

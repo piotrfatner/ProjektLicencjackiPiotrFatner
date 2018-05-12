@@ -60,6 +60,14 @@ app.config(function($routeProvider) {
             }
         })
 
+        .when('/doctorHome', {
+            templateUrl : 'views/doctorHome.html',
+            controller  : 'doctorHomeController',
+            resolve:{
+                factory:checkRoutingForDoctor
+            }
+        })
+
         // route for the contact page
         .when('/contact', {
             templateUrl : 'views/contact.html',
@@ -72,6 +80,21 @@ var checkRouting= function ($q, $rootScope, $location,$http,$window) {
     console.log($rootScope);
     if ($window.sessionStorage.getItem('userInfo-token')!= undefined || $window.sessionStorage.getItem('userInfo-token')!="") {
         $http.post('/checkToken',{token:$window.sessionStorage.getItem('userInfo-token')}).then(function(response) {
+            return true;
+        }).catch(function (reason) {
+            console.log(reason);
+            $location.path("/login");
+            return false;
+        });
+    } else {
+        $location.path("/login");
+    }
+};
+
+var checkRoutingForDoctor= function ($q, $rootScope, $location,$http,$window) {
+    console.log($rootScope);
+    if ($window.sessionStorage.getItem('userInfo-token')!= undefined || $window.sessionStorage.getItem('userInfo-token')!="") {
+        $http.post('/checkTokenForDoctor',{token:$window.sessionStorage.getItem('userInfo-token')}).then(function(response) {
             return true;
         }).catch(function (reason) {
             console.log(reason);

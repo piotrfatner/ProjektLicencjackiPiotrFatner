@@ -13,7 +13,7 @@ public class LoginDao {
     private JdbcTemplate template;
 
     public UserDTO getUserId(String username, String password){
-        String sql = "select USER_ID, USERNAME, EMAIL, TOKEN from tbl_user u " +
+        String sql = "select USER_ID, USERNAME, EMAIL, TOKEN, ROLE from tbl_user u " +
                 "JOIN tbl_password p ON u.USER_ID = p.USER_ID_FK " +
                 "JOIN tbl_token t ON t.USER_ID_FK = u.USER_ID " +
                 "WHERE u.USERNAME = ? AND p.PASSWORD = ?;";
@@ -25,10 +25,22 @@ public class LoginDao {
     }
 
     public UserDTO getTokenCheck(String token){
-        String sql = "select USER_ID, USERNAME, EMAIL, TOKEN from tbl_user u " +
+        String sql = "select USER_ID, USERNAME, EMAIL, TOKEN, ROLE from tbl_user u " +
                 "JOIN tbl_password p ON u.USER_ID = p.USER_ID_FK " +
                 "JOIN tbl_token t ON t.USER_ID_FK = u.USER_ID " +
                 "WHERE t.TOKEN = ?;";
+        try{
+            return template.queryForObject(sql,new Object[] {token},new UserMapper());
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    public UserDTO getTokenCheckForDoctor(String token){
+        String sql = "select USER_ID, USERNAME, EMAIL, TOKEN, ROLE from tbl_user u " +
+                "JOIN tbl_password p ON u.USER_ID = p.USER_ID_FK " +
+                "JOIN tbl_token t ON t.USER_ID_FK = u.USER_ID " +
+                "WHERE t.TOKEN = ? and u.ROLE = 'DOCTOR';";
         try{
             return template.queryForObject(sql,new Object[] {token},new UserMapper());
         }catch (EmptyResultDataAccessException e){

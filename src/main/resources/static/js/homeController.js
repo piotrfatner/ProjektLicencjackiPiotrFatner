@@ -6,6 +6,7 @@ app.controller('homeController', function($scope,$window,$location) {
     var num =0;
     $scope.setScope = function () {
         $scope.isLoggedAction();
+        $scope.isDoctorAction();
     };
 
     $scope.goToVisitAppointment = function (treatmentId) {
@@ -27,6 +28,13 @@ app.controller('homeController', function($scope,$window,$location) {
 
     $scope.isLoggedAction = function () {
         if($window.sessionStorage.getItem('userInfo-token') != null && $window.sessionStorage.getItem('userInfo-token').length == 40){
+            return true;
+        }
+        return false;
+    };
+
+    $scope.isDoctorAction = function () {
+        if($window.sessionStorage.getItem('userInfo-isDoctor') != null && $window.sessionStorage.getItem('userInfo-isDoctor') == 'true'){
             return true;
         }
         return false;

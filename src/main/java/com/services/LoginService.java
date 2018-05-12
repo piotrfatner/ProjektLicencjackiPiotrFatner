@@ -20,7 +20,13 @@ public class LoginService {
         if(userDTO != null){
             map.put("userId", String.valueOf(userDTO.getUserId()));
             map.put("token", userDTO.getToken());
-            map.put("redirectSide","/userHome");
+            if(userDTO.getRole().equals("DOCTOR")){
+                map.put("redirectSide","/doctorHome");
+                map.put("isDoctor","true");
+            }else{
+                map.put("redirectSide","/userHome");
+                map.put("isDoctor","false");
+            }
             return new ResponseEntity(map, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
@@ -34,8 +40,24 @@ public class LoginService {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 
+    public ResponseEntity<?> tokenCheckForDoctor(String token){
+        UserDTO userDTO = loginDao.getTokenCheckForDoctor(token);
+        if(userDTO!=null){
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
     public boolean checkAuth(String token){
         UserDTO userDTO = loginDao.getTokenCheck(token);
+        if(userDTO!=null){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkAuthForDoctor(String token){
+        UserDTO userDTO = loginDao.getTokenCheckForDoctor(token);
         if(userDTO!=null){
             return true;
         }

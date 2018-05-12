@@ -24,20 +24,22 @@
     <script src="js/userController.js"></script>
     <script src="js/visitAppointment.js"></script>
     <script src="js/treatmentRedirect.js"></script>
+    <script src="js/doctorHomeController.js"></script>
 </head>
 <body ng-controller="homeController">
 <header>
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" ng-hide=isLoggedAction() href="/">Klinika Afrodyta</a>
-                <a class="navbar-brand" ng-show=isLoggedAction() href="#!/userHome">Klinika Afrodyta</a>
+                <a class="navbar-brand" ng-hide="isLoggedAction()" href="/">Klinika Afrodyta</a>
+                <a class="navbar-brand" ng-show="isLoggedAction() && !isDoctorAction()" href="#!/userHome">Klinika Afrodyta</a>
+                <a class="navbar-brand" ng-show="isLoggedAction() && isDoctorAction()" href="#!/doctorHome">Klinika Afrodyta</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#!/treatments"><i class="fa fa-shield"></i> Zabiegi</a></li>
-                <li><a href="#!/contact"><i class="fa fa-comment"></i> Kontakt</a></li>
-                <li ng-show=!(isLoggedAction())><a href="#!/login">Zaloguj się <span class="glyphicon glyphicon-log-in"></span></a></li>
+                <li ng-hide="isDoctorAction()"><a href="#!/treatments"><i class="fa fa-shield"></i> Zabiegi</a></li>
+                <li ng-hide="isDoctorAction()"><a href="#!/contact"><i class="fa fa-comment"></i> Kontakt</a></li>
+                <li ng-show="!(isLoggedAction())"><a href="#!/login">Zaloguj się <span class="glyphicon glyphicon-log-in"></span></a></li>
                 <li ng-show=isLoggedAction()><a href="" ng-controller="userController"  ng-click="logout()">Wyloguj się <span class="glyphicon glyphicon-log-out"></span></a></li>
             </ul>
         </div>

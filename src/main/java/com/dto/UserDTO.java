@@ -7,6 +7,7 @@ public class UserDTO implements Serializable {
     private long userId;
     private String username;
     private String email;
+    private String role;
     private String token;
 
     public long getUserId() {
@@ -31,6 +32,14 @@ public class UserDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getToken() {
