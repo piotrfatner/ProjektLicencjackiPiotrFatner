@@ -28,13 +28,13 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value="/checkToken", method = RequestMethod.POST)
-    public ResponseEntity<?> checkToken(@RequestBody UserDTO user){
+    @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
+    public ResponseEntity<?> checkToken(@RequestBody UserDTO user) {
         return loginService.tokenCheck(user.getToken());
     }
 
-    @RequestMapping(value="/checkTokenForDoctor", method = RequestMethod.POST)
-    public ResponseEntity<?> checkTokenForDoctor(@RequestBody UserDTO user){
+    @RequestMapping(value = "/checkTokenForDoctor", method = RequestMethod.POST)
+    public ResponseEntity<?> checkTokenForDoctor(@RequestBody UserDTO user) {
         return loginService.tokenCheckForDoctor(user.getToken());
     }
 
