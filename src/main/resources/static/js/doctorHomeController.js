@@ -21,7 +21,6 @@ app.controller('doctorHomeController', function ($scope, $http, $window, $locati
     };
 
     $scope.getReservedTreatmentsScheduleForDoctor();
-
     $scope.uiConfig = {
         calendar: {
             defaultView: 'agendaWeek',
@@ -29,7 +28,7 @@ app.controller('doctorHomeController', function ($scope, $http, $window, $locati
             minTime: "08:00:00",
             maxTime: "18:00:00",
             weekends: false,
-            height: 600,
+            height: 650,
             firstDay: 1,
             locale: 'pl',
             lang: 'pl',
@@ -41,10 +40,15 @@ app.controller('doctorHomeController', function ($scope, $http, $window, $locati
                 center: 'title',
                 right: 'prev,next today'
             },
-            eventClick: $scope.alertOnEventClick,
+            eventClick: function (eventObj) {
+                $scope.modalBodyTitle = eventObj.title;
+                angular.element("#myModal").modal("show");
+            },
             eventRender: function (eventObj, $el) {
+                console.log(eventObj);
                 $el.popover({
-                    title: eventObj.title,
+                    content: eventObj.title.replace(/\n/g, "<br />"),
+                    html:true,
                     trigger: 'hover',
                     placement: 'bottom',
                     container: 'body'

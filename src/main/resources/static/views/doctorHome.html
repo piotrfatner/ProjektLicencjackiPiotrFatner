@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Strona domowa</title>
 </head>
 <body>
 <div class="container">
-    <div>Hey doctor!</div>
     <h3>Rozkład twoich wizyt:</h3>
     <div>
         <div class="panel panel-default">
@@ -15,6 +14,25 @@
                      calendar="myCalendar"
                      ui-calendar="uiConfig.calendar" class="calendar"></div>
             </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Szczegóły wizyty:</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="white-space: pre;">{{modalBodyTitle}}</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

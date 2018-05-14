@@ -17,9 +17,9 @@ public class CalendarForDoctorMapper implements RowMapper<CalendarForDoctorDTO> 
         cal.setTime(calendarForDoctorDTO.getStart());
         cal.add(Calendar.HOUR_OF_DAY, 1);
         calendarForDoctorDTO.setEnd(cal.getTime());
-        calendarForDoctorDTO.setTitle("Zabieg: " + resultSet.getString("NAME") + "\nPacjent: " +
+        calendarForDoctorDTO.setTitle("Umówiony zabieg : " + resultSet.getString("NAME") + "\nDane pacjenta : " +
                 resultSet.getString("FIRSTNAME") + " "
-                + resultSet.getString("LASTNAME") + "\nInformacje od pacjenta: "+resultSet.getString("NOTES"));
+                + resultSet.getString("LASTNAME") + "\nInformacje od pacjenta : "+resultSet.getString("NOTES"));
         return calendarForDoctorDTO;
     }
 }
