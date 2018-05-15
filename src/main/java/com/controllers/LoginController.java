@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.dto.LoginDTO;
+import com.dto.RegisterDTO;
 import com.dto.UserDTO;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.services.LoginService;
@@ -19,12 +20,14 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    private static final Random random = new Random();
-    private static final String CHARS = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@$";
-
     @RequestMapping(value = "/loginAction", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         return loginService.loginActionCheck(loginDTO.getUsername(), loginDTO.getPassword());
+    }
+
+    @RequestMapping(value = "/registerAction", method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody RegisterDTO registerDTO) {
+        return loginService.register(registerDTO);
     }
 
 
@@ -36,13 +39,5 @@ public class LoginController {
     @RequestMapping(value = "/checkTokenForDoctor", method = RequestMethod.POST)
     public ResponseEntity<?> checkTokenForDoctor(@RequestBody UserDTO user) {
         return loginService.tokenCheckForDoctor(user.getToken());
-    }
-
-    public static String generateToken() {
-        StringBuilder token = new StringBuilder(40);
-        for (int i = 0; i < 40; i++) {
-            token.append(CHARS.charAt(random.nextInt(CHARS.length())));
-        }
-        return token.toString();
     }
 }

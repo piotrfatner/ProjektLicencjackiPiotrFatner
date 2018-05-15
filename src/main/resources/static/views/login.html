@@ -6,7 +6,8 @@
 </head>
 <body ng-controller="loginController">
 <div class="container">
-    <form authentication-success-handler-ref="authSuccessHandler" ng-submit="login()" class="ng-cloak">
+    <form authentication-success-handler-ref="authSuccessHandler" ng-submit="login()" class="ng-cloak"
+          style="margin-bottom: 2%">
         <div class="form-group">
             <label for="username">Login:</label>
             <input text="text" class="form-control" id="username" name="username"
@@ -15,8 +16,112 @@
             <input type="password" class="form-control" id="password" name="password"
                    ng-model="password"/>
         </div>
-        <button type="submit" class="btn btn-primary">Zaloguj!</button>
+        <div>
+            <button type="submit" class="btn btn-primary" style="margin-right: 1%;">Zaloguj!</button>
+            <a data-toggle="collapse" data-target="#registrationFormDiv"
+               aria-expanded="false" aria-controls="registrationFormDiv">Nie masz konta? Zarejestruj się!</a>
+        </div>
     </form>
+
+    <div style="color: red; margin-bottom: 2%">{{invalidCredentials}}</div>
+
+    <div id="registrationFormDiv" class="collapse">
+        <form id="registrationForm" ng-submit="register()">
+            <div>
+                <table style="width: 50%">
+                    <tr>
+                        <td>
+                            <label><b>Login</b></label>
+                        </td>
+                        <td>
+                            <input type="text" style="width: 100%;" placeholder="Login" name="loginReg" id="loginReg"
+                                   ng-model="loginReg" minlength="6" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Imię</b></label>
+                        </td>
+                        <td>
+                            <input type="text" style="width: 100%;" placeholder="Imię" name="firstNameReg"
+                                   id="firstNameReg"
+                                   ng-model="firstNameReg" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Nazwisko</b></label>
+                        </td>
+                        <td>
+                            <input type="text" style="width: 100%;" placeholder="Nazwisko" name="lastNameReg"
+                                   id="lastNameReg"
+                                   ng-model="lastNameReg" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Email</b></label>
+                        </td>
+                        <td>
+                            <input type="text" style="width: 100%;" placeholder="Email" name="emailReg" id="emailReg"
+                                   ng-model="emailReg" maxlength="40"
+                                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b>Hasło</b></label>
+                        </td>
+                        <td>
+                            <input type="password" style="width: 100%;" placeholder="Hasło" name="passwordReg"
+                                   id="passwordReg"
+                                   ng-model="passwordReg" minlength="6"
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                   title="Hasło musi składać sie z co najmniej 1 cyfry, jednej dużej litery i jednej małej. Minimalna długość hasła wynosi 6."
+                                   required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><b style="margin-right: 20px;">Powtórz hasło</b></label>
+                            <div></div>
+                        </td>
+                        <td>
+                            <input type="password" style="width: 100%;" placeholder="Powtórz hasło"
+                                   name="passwordRepeatReg"
+                                   id="passwordRepeatReg" ng-model="passwordRepeatReg" ng-change="validatePassword()"
+                                   minlength="6" required>
+                            <div style="color:red" ng-show="differentPasswords">Hasła nie są takie same!</div>
+                        </td>
+                    </tr>
+                </table>
+                </br>
+                <p>Akceptujesz nasze postanowienia: <a href="">Polityka użytkowania</a>.</p>
+
+                <div class="clearfix">
+                    <button type="submit" class="btn btn-primary">Zarejestruj się!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="white-space: pre;">{{modalBodyRegister}}</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="refresh()">OK
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 </body>
 </html>
